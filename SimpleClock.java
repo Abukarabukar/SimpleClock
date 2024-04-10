@@ -24,7 +24,7 @@ public class SimpleClock extends JFrame {
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setTitle("Digital Clock");
             this.setLayout(new FlowLayout());
-            this.setSize(350, 220);
+            this.setSize(450, 300);
             this.setResizable(false);
     
             timeFormat = new SimpleDateFormat("hh:mm:ss a");
@@ -51,21 +51,23 @@ public class SimpleClock extends JFrame {
         }
     
         public void setTimer() {
-            while (true) {
+            while (Thread.currentThread().isAlive()) {
                 time = timeFormat.format(Calendar.getInstance().getTime());
                 timeLabel.setText(time);
-    
+
                 day = dayFormat.format(Calendar.getInstance().getTime());
                 dayLabel.setText(day);
-    
+
                 date = dateFormat.format(Calendar.getInstance().getTime());
                 dateLabel.setText(date);
-    
+
                 try {
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-                    e.getStackTrace();
+                    System.out.println("here 1");
+                    Thread.sleep(10000);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
                 }
+
             }
         }
         public static void main(String[] args) {
