@@ -1,7 +1,11 @@
 //package SimpleClock;
 
 import javax.swing.*;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -16,11 +20,19 @@ public class SimpleClock extends JFrame {
         JLabel timeLabel;
         JLabel dayLabel;
         JLabel dateLabel;
+
+        JButton button;
+
+
         String time;
         String day;
         String date;
 
+
         SimpleClock() {
+
+
+
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setTitle("Digital Clock");
             this.setLayout(new FlowLayout());
@@ -37,11 +49,23 @@ public class SimpleClock extends JFrame {
             timeLabel.setOpaque(true);
             dayLabel=new JLabel();
             dayLabel.setFont(new Font("Ink Free",Font.BOLD,34));
-    
+
+
+            button = new JButton("Change Format");
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(SimpleClock.this ,"WHYYYYY!");
+                }
+            });
+
+
+
             dateLabel=new JLabel();
             dateLabel.setFont(new Font("Ink Free",Font.BOLD,30));
-    
-    
+
+
+            this.add(button);
             this.add(timeLabel);
             this.add(dayLabel);
             this.add(dateLabel);
@@ -71,6 +95,8 @@ public class SimpleClock extends JFrame {
             }
         }
         public static void main(String[] args) {
+
             new SimpleClock();
+
         }
     }
